@@ -102,7 +102,15 @@ EXPOSE 22
 #     && cmake ..  \
 #     && make -j12 \
 #     && make install
+# ############################# ROS pkg ############################
 
+RUN apt-get update && apt-get install -y \
+    ros-melodic-vision-visp \
+    ros-melodic-hardware-interface \
+    ros-melodic-pcl-ros \
+    ros-melodic-moveit \
+    ros-melodic-gazebo-ros-pkgs \
+    ros-melodic-ros-control
 
 # ############################# LoCoBot and PyRobot ############################
 # RUN python -m pip install -U pip setuptools
@@ -122,6 +130,9 @@ EXPOSE 22
 #     ros-melodic-executive-smach \
 #     ros-melodic-smach-viewer
 
+# ##################################### UNSEENsegment object ######################################
+
+RUN pip2 install torch future scipy torchvision easydict transforms3d
 
 # ##################################### Pytorch ######################################
 # RUN python3 -m pip install -U pip 

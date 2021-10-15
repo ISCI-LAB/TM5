@@ -110,7 +110,8 @@ RUN apt-get update && apt-get install -y \
     ros-melodic-pcl-ros \
     ros-melodic-moveit \
     ros-melodic-gazebo-ros-pkgs \
-    ros-melodic-ros-control
+    ros-melodic-ros-control \
+    ros-melodic-industrial-core
 
 # ############################# LoCoBot and PyRobot ############################
 # RUN python -m pip install -U pip setuptools

@@ -107,11 +107,19 @@ EXPOSE 22
 RUN apt-get update && apt-get install -y \
     ros-melodic-vision-visp \
     ros-melodic-hardware-interface \
+    # ros-melodic-gazebo* \
     ros-melodic-pcl-ros \
-    ros-melodic-moveit \
+    ros-melodic-moveit* \
     ros-melodic-gazebo-ros-pkgs \
-    ros-melodic-ros-control \
-    ros-melodic-industrial-core
+    ros-melodic-gazebo-ros-control \
+    ros-melodic-industrial-core \
+    ros-melodic-ros-controllers \
+    ros-melodic-joint-trajectory-controller \
+    ros-melodic-rqt-joint-trajectory-controller
+    # ros-melodic-position-controllers \
+    # ros-melodic-effort-controllers \
+    # ros-melodic-joint-state-controller 
+    # ros-melodic-open-industrial-ros-controllers \
 
 # ############################# LoCoBot and PyRobot ############################
 # RUN python -m pip install -U pip setuptools
@@ -151,11 +159,11 @@ RUN pip2 install torch future scipy torchvision easydict transforms3d
 
 ############################# custom gazebo ###############################
 # pre download model 
-# RUN mkdir -p $HOME/.gazebo \
-#     && cd $HOME/.gazebo \
-#     && git clone https://github.com/osrf/gazebo_models \
-#     && mv gazebo_models models \
-#     && cd
+RUN mkdir -p $HOME/.gazebo \
+    && cd $HOME/.gazebo \
+    && git clone https://github.com/osrf/gazebo_models \
+    && mv gazebo_models models \
+    && cd
 
 
 # RUN python -m pip install future
@@ -181,7 +189,10 @@ RUN echo "cd ~/TM5" >> ${HOME}/.bashrc
 # GPU support
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=all
-
+# ENV NVIDIA_VISIBLE_DEVICES \
+#     ${NVIDIA_VISIBLE_DEVICES:-all}
+# ENV NVIDIA_DRIVER_CAPABILITIES \
+#     ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
 # setup entrypoint
 COPY ./ros_entrypoint.sh /
 ENTRYPOINT ["/ros_entrypoint.sh"]

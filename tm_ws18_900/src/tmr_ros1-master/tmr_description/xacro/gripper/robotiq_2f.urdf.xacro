@@ -29,7 +29,11 @@
     <parent link="${prefix}flange_link"/>
     <child link="robotiq_coupler"/>
   </joint>
-
+  <!-- <joint name="robotiq_coupler_joint" type="fixed">
+    <origin xyz="0 0 0.004" rpy="0 0 ${-pi/2.0}" />
+    <parent link="${prefix}flange_link"/>
+    <child link="robotiq_coupler"/>
+  </joint> -->
   <gazebo reference="robotiq_coupler">
     <mu1>0.9</mu1>
     <mu2>0.9</mu2>
@@ -48,7 +52,9 @@
   <xacro:robotiq_85_gripper prefix="" parent="robotiq_coupler" >
     <origin xyz="0 0 0.004" rpy="0 ${-pi/2} ${pi}"/>
   </xacro:robotiq_85_gripper> 
-
+  <!-- <xacro:robotiq_85_gripper prefix="" parent="robotiq_coupler" >
+    <origin xyz="0 0 0.004" rpy="0 ${-pi/2} ${pi}"/>
+  </xacro:robotiq_85_gripper>  -->
   <gazebo>
     <gripper name="gazebo_gripper">
       <grasp_check>

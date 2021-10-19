@@ -115,7 +115,8 @@ RUN apt-get update && apt-get install -y \
     ros-melodic-industrial-core \
     ros-melodic-ros-controllers \
     ros-melodic-joint-trajectory-controller \
-    ros-melodic-rqt-joint-trajectory-controller
+    ros-melodic-rqt-joint-trajectory-controller \
+    ros-melodic-joint-state-publisher-gui
     # ros-melodic-position-controllers \
     # ros-melodic-effort-controllers \
     # ros-melodic-joint-state-controller 

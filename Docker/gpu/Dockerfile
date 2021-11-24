@@ -1,4 +1,5 @@
-FROM nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04
+FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+# FROM nvidia/cuda:10.1-cudnn7-runtime-ubuntu18.04  ok
 # FROM nvidia/cuda:9.2-cudnn7-runtime-ubuntu18.04
 # FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04
 ENV DEBIAN_FRONTEND noninteractive
@@ -104,19 +105,21 @@ EXPOSE 22
 #     && make install
 # ############################# ROS pkg ############################
 
-RUN apt-get update && apt-get install -y \
-    ros-melodic-vision-visp \
-    ros-melodic-hardware-interface \
-    # ros-melodic-gazebo* \
-    ros-melodic-pcl-ros \
-    ros-melodic-moveit* \
-    ros-melodic-gazebo-ros-pkgs \
-    ros-melodic-gazebo-ros-control \
-    ros-melodic-industrial-core \
-    ros-melodic-ros-controllers \
-    ros-melodic-joint-trajectory-controller \
-    ros-melodic-rqt-joint-trajectory-controller \
-    ros-melodic-joint-state-publisher-gui
+# RUN apt-get update && apt-get install -y \
+#     ros-melodic-vision-visp \
+#     ros-melodic-hardware-interface \
+#     # ros-melodic-gazebo* \
+#     ros-melodic-pcl-ros \
+#     ros-melodic-moveit* \
+#     ros-melodic-gazebo-ros-pkgs \
+#     ros-melodic-gazebo-ros-control \
+#     ros-melodic-industrial-core \
+#     ros-melodic-ros-controllers \
+#     ros-melodic-joint-trajectory-controller \
+#     ros-melodic-rqt-joint-trajectory-controller \
+#     ros-melodic-joint-state-publisher-gui
+
+
     # ros-melodic-position-controllers \
     # ros-melodic-effort-controllers \
     # ros-melodic-joint-state-controller 
@@ -142,7 +145,7 @@ RUN apt-get update && apt-get install -y \
 
 # ##################################### UNSEENsegment object ######################################
 
-RUN pip2 install torch future scipy torchvision easydict transforms3d
+# RUN pip2 install torch future scipy torchvision easydict transforms3d
 
 # ##################################### Pytorch ######################################
 # RUN python3 -m pip install -U pip 
@@ -160,11 +163,11 @@ RUN pip2 install torch future scipy torchvision easydict transforms3d
 
 ############################# custom gazebo ###############################
 # pre download model 
-RUN mkdir -p $HOME/.gazebo \
-    && cd $HOME/.gazebo \
-    && git clone https://github.com/osrf/gazebo_models \
-    && mv gazebo_models models \
-    && cd
+# RUN mkdir -p $HOME/.gazebo \
+#     && cd $HOME/.gazebo \
+#     && git clone https://github.com/osrf/gazebo_models \
+#     && mv gazebo_models models \
+#     && cd
 
 
 # RUN python -m pip install future

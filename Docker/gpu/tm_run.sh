@@ -38,18 +38,18 @@ if [ ! -f $XAUTH ]; then
     echo "[$XAUTH] was not properly created. Exiting..."
     exit 1
 fi
-
+    # -v "/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 BASH_OPTION=bash
 
 docker run \
     -it \
-    --rm \
     -e DISPLAY=$DISPLAY \
+    --ipc=host \
     -e QT_X11_NO_MITSHM=1 \
     -e XAUTHORITY=$XAUTH \
-    -v "/home/popo/TM5:/home/po/TM5" \
-    -v "$XAUTH:$XAUTH:rw" \
-    -v "/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+    -v "/home/iscilab/TM5:/home/po/TM5" \
+    -v "$XAUTH:$XAUTH" \
+    -v "/tmp/.X11-unix:/tmp/.X11-unix" \
     -v "/etc/localtime:/etc/localtime:ro" \
     --user "root:root" \
     --name TM5 \
@@ -57,5 +57,5 @@ docker run \
     --privileged \
     --security-opt seccomp=unconfined \
     $DOCKER_OPTS \
-    jack6099boy/tm5:GPU16 \
+    jack6099boy/tm5:GPU18V \
     $BASH_OPTION

@@ -4,7 +4,8 @@ ARGS=("$@")
 
 # Make sure processes in the container can connect to the x server
 # Necessary so gazebo can create a context for OpenGL rendering (even headless)
- XAUTH=/tmp/.docker.xauth
+#XAUTH=/tmp/.docker.xauth
+XAUTH=~/.Xauthority
 if [ ! -f $XAUTH ]; then
     xauth_list=$(xauth nlist $DISPLAY)
     xauth_list=$(sed -e 's/^..../ffff/' <<<"$xauth_list")
